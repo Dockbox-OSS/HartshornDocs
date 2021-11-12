@@ -5,6 +5,7 @@ repo_name: GuusLieben/Hartshorn
 edit_uri: ""
 plugins:
   - git-revision-date
+  - search
 theme:
   name: material
   icon:
