@@ -1,0 +1,18 @@
+.md-header__button.md-logo img, .md-header__button.md-logo svg {
+    height: 2rem;
+    width: 2rem;
+}
+
+.md-header__title {
+    margin-left: 0.5rem;
+    font-size: 1rem;
+}
+
+.md-typeset .admonition-title, .md-typeset summary {
+    background-color: rgb(27 120 97 / 10%);
+    border-left: 0.2rem solid #009485;
+}
+
+.md-typeset .admonition-title:before, .md-typeset summary:before {
+    background-color: #009485;
+}

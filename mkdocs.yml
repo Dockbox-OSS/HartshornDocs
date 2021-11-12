@@ -10,8 +10,28 @@ theme:
   name: material
   icon:
     repo: fontawesome/brands/github
+  logo: assets/logo.png
   palette:
     scheme: default
     primary: teal
     accent: teal
-    
+  features:
+    - navigation.tabs
+    - navigation.instant
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.betterem
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+nav:
+  - Getting started: index.md
+  - Modules: modules.md
+  - Testing: testing.md
+extra_css:
+  - stylesheets/extra.css
