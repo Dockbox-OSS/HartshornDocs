@@ -1,0 +1,16 @@
+site_name: Hartshorn Docs
+site_url: https://docs.dockbox.org/
+repo_url: https://github.com/GuusLieben/Hartshorn
+repo_name: GuusLieben/Hartshorn
+edit_uri: ""
+plugins:
+  - git-revision-date
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    scheme: default
+    primary: teal
+    accent: teal
+    
