@@ -16,3 +16,7 @@
 .md-typeset .admonition-title:before, .md-typeset summary:before {
     background-color: #009485;
 }
+
+.md-search__input {
+    font-size: .7rem;
+}

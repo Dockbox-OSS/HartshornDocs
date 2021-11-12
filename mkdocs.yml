@@ -28,6 +28,7 @@ theme:
   features:
     - content.code.annotate
     - content.tabs.link
+    - navigation.tabs.sticky
     - navigation.expand
     - navigation.indexes
     - navigation.instant
@@ -101,6 +102,9 @@ markdown_extensions:
 nav:
   - Getting started: index.md
   - Modules: modules.md
-  - Testing: testing.md
+  - Contribute: 
+    - contributing.md
+    - Coding conventions: codestyle.md
+    - Testing: testing.md
 extra_css:
   - stylesheets/extra.css
