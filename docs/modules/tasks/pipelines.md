@@ -157,8 +157,8 @@ Discard          | Both                | The output of the pipeline up until it'
 Return           | Both                | The output of the pipeline up until it's cancelled is returned as-is. In ConvertiblePipeline`s this can cause a `ClassCastException` if not correctly handled.             
 Convert          |`ConvertiblePipeline`| The output of the pipeline up until it's cancelled is returned by first converting to the output type.
 
-
-**Note:** _In `ConvertiblePipeline`s, setting a `CancelBehaviour` applies to all the pipelines and so it is not possible to have multiple `CancelBehaviour`s. Instead, the one set last is what will be used._
+!!! note
+    _In `ConvertiblePipeline`s, setting a `CancelBehaviour` applies to all the pipelines and so it is not possible to have multiple `CancelBehaviour`s. Instead, the one set last is what will be used._
 
 ??? info "View imports"
 
