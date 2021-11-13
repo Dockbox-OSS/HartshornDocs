@@ -112,14 +112,16 @@ markdown_extensions:
 
 # Page tree
 nav:
-  - Getting started:
-    - index.md
-    - Setting up your development environment: getting-started/setup.md
-    - Creating your first application: getting-started/first-application.md
+  - Overview: 
+    - Introduction: index.md
+    - Getting started:
+      - Setting up your development environment: getting-started/setup.md
+      - Creating your first application: getting-started/first-application.md
+    
   - Core technologies: 
-    - Philosophy: core.md
     - Core principles:
       - Context and dependency injection (CDI):
+        - Introduction: core/cdi.md
         - Dependency injection: core/dependency-inject.md
         - Context injection: core/context-inject.md # incl. autocreating
         - Injection configurations: core/inject-configuration.md

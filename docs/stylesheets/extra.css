@@ -78,3 +78,11 @@ h1 > a > .twemoji {
     margin-left: 0;
     margin-top: -0.2em;
 }
+
+.md-typeset [type=checkbox]:checked+.task-list-indicator:before {
+    background-color: #89c4a3;
+}
+
+.md-annotation__index {
+    background-color: rgb(175 124 198 / 53%)
+}
