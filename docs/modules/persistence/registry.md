@@ -1,4 +1,4 @@
-# Registries
+# Registries [:fontawesome-brands-github:](https://github.com/GuusLieben/Hartshorn/tree/develop/hartshorn-persistence/src/main/java/org/dockbox/hartshorn/persistence/registry){:target="_blank"}
 
 In some cases, particularly with hierarchical data, it can be useful to store this information in a key-based column data structure. The `Registry<V>` data structure provides an easy and efficient way this can be done by building on the advantages of a `HashMap<K,V>`.
 
@@ -8,6 +8,11 @@ A `Registry<V>` stores information in columns, which consist of a key (`Registry
 
 Each column within a Registry is stored against a `RegistryIdentifier`. You can define your own Registry keys by extending the `RegistryIdentifier` interface. You can create your own `RegistryIdentifier` simply as follows:
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.RegistryIdentifier;
+    ```
 ```java
 public enum ExampleIdentifier implements RegistryIdentifier {
    ExampleKey1, ExampleKey2
@@ -21,6 +26,11 @@ You can use anything that implements the `RegistryIdentifier` interface as a key
 
 An example of where you may use a Registry is to store the variants for a block of Cobblestone in Minecraft. First, we'll need to create an `enum` for the different variants.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.RegistryIdentifier;
+    ```
 ```java
 public enum VariantIdentifier implements RegistryIdentifier {
    FULLBLOCK, STAIR, SLAB, WALL   
@@ -31,6 +41,11 @@ From there, we need to create a Registry. For this example, we'll be using a `St
 
 You can add information to a Registry using primarily #addColumn and #addData. There is an important difference between the two methods, #addData will add the data to an existing column or create one if it doesn't exist, whereas #addColumn will replace an existing column if it has the same `RegistryIdentifier`. Both methods, though, can take in as many values as you want the column to contain and returns the instance of the Registry so that it can be easily chained.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.Registry;
+    ```
 ```java
 Registry<String> cobblestoneVariants = new Registry<String>()
    .addColumn(VariantIdentifier.FULLBLOCK, "Cobblestone Fullblock", "Mossy Cobblestone Fullblock")
@@ -72,6 +87,11 @@ That being said, none of this so far has been particularly profound and that's b
 
 Multidimensional data - such as the variants of many different blocks - can be stored in a Registry by nesting Registries within each other, which is where the `RegistryColumn<V>` truly shines. Building on the previous example, Let's start by creating another `enum` for the block identifiers.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.RegistryIdentifier;
+    ```
 ```java
 public enum BlockIdentifier implements RegistryIdentifier {
    COBBLESTONE, SANDSTONE
@@ -80,6 +100,11 @@ public enum BlockIdentifier implements RegistryIdentifier {
 
 We can then create a nested Registry as shown below:
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.Registry;
+    ```
 ```java        
 Registry<Registry<String>> blockVariants = new Registry<>();
 blockVariants.addColumn(BlockIdentifier.COBBLESTONE, cobblestoneVariants)
@@ -91,6 +116,11 @@ blockVariants.addColumn(BlockIdentifier.COBBLESTONE, cobblestoneVariants)
 
 Alternatively, if the Registry is being created dynamically, it may be useful to leverage #getColumnOrCreate, which takes a `RegistryIdentifier` and an optional number of default values for the column to have if it doesn't exist and needs to be created.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.persistence.registry.Registry;
+    ```
 ```java
 Registry<Registry<String>> blockVariants = new Registry<>();
 

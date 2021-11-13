@@ -66,3 +66,15 @@
 .md-version__item:hover {
     background-color: #507263;
 }
+
+.md-typeset code {
+    word-break: inherit;
+}
+
+h1 > a > .twemoji {
+    max-height: .8em;
+    height: .8em !important;
+    vertical-align: middle !important;
+    margin-left: 0;
+    margin-top: -0.2em;
+}

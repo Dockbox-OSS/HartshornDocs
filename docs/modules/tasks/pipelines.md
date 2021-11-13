@@ -1,4 +1,4 @@
-# Pipeline framework
+# Pipeline framework [:fontawesome-brands-github:](https://github.com/GuusLieben/Hartshorn/tree/develop/hartshorn-tasks/src/main/java/org/dockbox/hartshorn/core/task/pipeline){:target="_blank"}
 Pipelines provide an easy, type-safe and exception-safe means of breaking up large operations into smaller steps, known as pipes; with the pipes being executed in series. A collection of these pipes form a pipeline, where the result of the previous pipe becomes the input for the next pipe. 
 
 The pipeline API consists of 2 built-in pipelines: `ConvertiblePipeline<P, I>` and `Pipeline<I>`, along with an `AbstractPipeline<P, I>` from which they both derive. There are also a number of built-in pipes, which allow you to customise what inputs you receive for a particular step. The pipelines are designed to be pipe independent so that you can create and use custom pipes with the built-in pipelines without having to make your own pipeline class.
@@ -7,6 +7,12 @@ The pipeline API consists of 2 built-in pipelines: `ConvertiblePipeline<P, I>` a
 
 Pipes provided the means to manipulate the data being processed by the pipeline. Pipes can be split into two different categories, depending on whether they extend `StandardPipe<I, O>` or `ComplexPipe<I, O>`. Standard pipes primarily only provide alternative ways of presenting the data within the pipeline to that specific pipe. By default, the standard pipe takes in an `Exceptional<I>`, however, some of the built-in standard pipes have override this so that it can be displayed in different ways. For example: 
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.Pipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.InputPipe;
+    ```
 ```java
 Pipe#execute(I input, Throwable throwable) -> O
 
@@ -21,6 +27,12 @@ You can very easily create custom pipes by either extending `StandardPipe<I, O>`
 
 As an example, let's see how you would create a `ListenerPipe` that takes in an input but doesn't return anything, with the input being automatically returned by the pipe interface. The first thing to consider is which type of pipe should be extended? As this is at its core, once again another way of displaying the information of the pipeline to the user it should extend `StandardPipe<I, O>`. All that must then be done is override the `apply` method, create an abstract `execute` method which just takes in the input and create the static `of` method. The complete implementation for such a pipe is shown below.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.StandardPipe;
+    import org.dockbox.hartshorn.core.domain.Exceptional;
+    ```
 ```java
 @FunctionalInterface
 public interface ListenerPipe<I> extends StandardPipe<I, I> {
@@ -66,6 +78,12 @@ The first built-in pipeline is simply `Pipeline<I>`. It cannot have its type cha
 
 There are several different ways that pipes can be added to the pipeline, either individually, as varargs, or as a collection, utilising either lambda expressions or method references. You can also add another pipeline, which just internally adds the pipes of the new pipeline as a collection. The different ways are demonstrated in the pipeline below:
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.InputPipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.Pipeline;
+    ```
 ```java
 private int doubleNumber(int number) {
     return number * 2;
@@ -109,6 +127,13 @@ Let's consider what happens if a pipe throws an exception. In this situation, th
 
 There are two ways that you can remove pipes from a pipeline, using either `removeLastPipe` or `removePipeAt`, where pipes are stored in the order they are added to the pipeline. Both these methods check for the index being out of bounds, in which case nothing is removed.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.InputPipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.Pipeline;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.AbstractPipeline;
+    ```
 ```java
 AbstractPipeline<Integer, Integer> pipeline = new Pipeline<Integer>()
     .addPipe(InputPipe.of(input -> input * 2))
@@ -135,6 +160,14 @@ Convert          |`ConvertiblePipeline`| The output of the pipeline up until it'
 
 **Note:** _In `ConvertiblePipeline`s, setting a `CancelBehaviour` applies to all the pipelines and so it is not possible to have multiple `CancelBehaviour`s. Instead, the one set last is what will be used._
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.InputPipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.CancellablePipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.Pipeline;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.AbstractPipeline;
+    ```
 ```java
 AbstractPipeline<Integer, Integer> pipeline = new Pipeline<Integer>()
     .setCancelBehaviour(CancelBehaviour.RETURN)
@@ -160,6 +193,11 @@ One example of where a pipeline may be useful is for an event bus. By utilising 
 
 Consider the following event listeners.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.events.annotations.Listener;
+    ```
 ```java
 public class EventListeners {
 
@@ -184,6 +222,15 @@ public class EventListeners {
 
 This class has 2 event listeners; one which responds to "_Hello_" and the other that modifies the event's message if it contains "_pipelines are cool_". These can be very easily registered to the event bus by utilising the `ListenerPipe` we defined previously.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.context.element.MethodContext;
+    import org.dockbox.hartshorn.core.context.element.TypeContext;
+    import org.dockbox.hartshorn.events.annotations.Listener;
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.ListenerPipe;
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.Pipeline;
+    ```
 ```java
 private Pipeline<Event> eventBus = new Pipeline<>();
 
@@ -203,6 +250,12 @@ this.registerListeners(new EventListeners());
 
 From there, we can either process events individually or as a collection.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.events.parents.Event;
+    import org.dockbox.hartshorn.core.domain.Exceptional;
+    ```
 ```java
 Event helloMessage = new ChatEvent("Hello Pumbas!");
 Event pipelinesAreCoolMessage = new ChatEvent("Don't you think pipelines are cool?");
@@ -223,6 +276,12 @@ A `ConvertiblePipeline<P, I>` cannot be directly instantiated. This is instead d
 
 The `ConvertiblePipeline<P, I>` can be converted by calling `convertPipeline` which takes in a non-null `Function<? super I, K>`, as the converter and a non-null `Class<K>` where `K` is the input type of the new pipeline. This creates a new `ConvertiblePipeline<P, K>` which internally stores references of the next pipeline and previous pipeline in a linked-list like manner.
 
+??? info "View imports"
+
+    ```java
+    import org.dockbox.hartshorn.core.task.pipeline.pipelines.ConvertiblePipelineSource;
+    import org.dockbox.hartshorn.core.task.pipeline.pipes.InputPipe;
+    ```
 ```java
 float output = new ConvertiblePipelineSource<>(Integer.class)
     .addPipe(InputPipe.of(input -> input * 2))
