@@ -1,16 +1,40 @@
+:root {
+    --md-primary-fg-color: #89C4A3;
+    --md-primary-fg-color--light: #87C6C9;
+    --md-primary-fg-color--dark: #007a6c;
+    --md-primary-bg-color: #fff;
+    --md-primary-bg-color--light: hsla(0,0%,100%,0.7);
+    --md-accent-fg-color: 87C6CA;
+    --md-accent-fg-color--transparent: rgb(65 203 159 / 10%);
+    --md-accent-bg-color: #fff;
+    --md-accent-bg-color--light: hsla(0,0%,100%,0.7);
+}
+
+.md-tabs {
+    background-color: #669179;
+}
+
+.md-tabs__link {
+    opacity: .8;
+}
+
 .md-header__button.md-logo img, .md-header__button.md-logo svg {
     height: 2rem;
     width: 2rem;
 }
 
 .md-header__title {
-    margin-left: 0.5rem;
+    margin-left: .5rem;
     font-size: 1rem;
 }
 
 .md-typeset .admonition-title, .md-typeset summary {
     background-color: rgb(27 120 97 / 10%);
-    border-left: 0.2rem solid #009485;
+    border-left: .2rem solid #009485;
+}
+
+.md-typeset .info>.admonition-title, .md-typeset .info>summary, .md-typeset .todo>.admonition-title, .md-typeset .todo>summary {
+    background-color:rgb(123 175 148 / 10%)
 }
 
 .md-typeset .admonition-title:before, .md-typeset summary:before {
@@ -19,4 +43,26 @@
 
 .md-search__input {
     font-size: .7rem;
+}
+
+.md-typeset {
+    font-size: .7rem
+}
+
+.md-typeset .admonition, .md-typeset details {
+    margin-bottom: -.4rem
+}
+
+.md-version__item {
+    line-height: 1.5rem;
+}
+
+.md-version__list {
+    background-color: #6b9281;
+    color: #fff;
+    font-size: 14px;
+}
+
+.md-version__item:hover {
+    background-color: #507263;
 }
