@@ -91,3 +91,8 @@ h1 > a > .twemoji {
     margin: .3rem auto;
     font-size: .6rem !important;
 }
+
+.md-nav--primary .md-nav__title {
+    background-color: var(--md-typeset-a-color);
+    color: #fff;
+}
