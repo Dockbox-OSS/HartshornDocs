@@ -86,3 +86,8 @@ h1 > a > .twemoji {
 .md-annotation__index {
     background-color: rgb(175 124 198 / 53%)
 }
+
+.md-banner__inner {
+    margin: .3rem auto;
+    font-size: .6rem !important;
+}
