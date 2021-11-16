@@ -96,3 +96,19 @@ h1 > a > .twemoji {
     background-color: var(--md-typeset-a-color);
     color: #fff;
 }
+
+.md-banner__inner a {
+    color: #89C4A3;
+}
+
+.md-banner__inner a:hover {
+    color: #507263;
+}
+
+.md-typeset h1 {
+    margin: 1.25em 0 .25em;
+}
+
+.md-typeset {
+    font-size: .65rem;
+}

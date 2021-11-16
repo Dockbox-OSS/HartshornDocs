@@ -122,8 +122,6 @@ nav:
     - Core principles:
       - Context and dependency injection (CDI):
         - Introduction: core/cdi.md
-        - Dependency injection: core/dependency-inject.md
-        - Context injection: core/context-inject.md # incl. autocreating
         - Injection configurations: core/inject-configuration.md
         - Binding and providing: core/providers.md
         - Factory providers: core/factory.md
