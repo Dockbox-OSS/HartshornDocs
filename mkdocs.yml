@@ -1,21 +1,21 @@
-site_name: Hartshorn Docs
+site_name: Hartshorn Framework
 site_url: https://hartshorn.dockbox.org/
 site_author: Guus Lieben
 
 # Repository
-repo_url: https://github.com/GuusLieben/Hartshorn
-repo_name: GuusLieben/Hartshorn
+repo_url: https://github.com/Dockbox-OSS/Hartshorn
+repo_name: ""
 edit_uri: ""
 
 # Copyright
-copyright: Copyright &copy; 2019 - 2021 Guus Lieben
+copyright: Copyright &copy; 2019 - 2023 Guus Lieben
 extra:
   generator: false
 
 # Configuration
 theme:
-  name: null
-  custom_dir: !ENV [THEME_DIR, "material"]
+  name: material
+  custom_dir: overrides
 
   # Static files
   static_templates:
@@ -42,16 +42,9 @@ theme:
     - search.share
     - search.suggest
   palette:
-    - scheme: default
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to dark mode
-    - scheme: slate
-      toggle:
-        icon: material/weather-night
-        name: Switch to light mode
+    primary: custom
   font:
-    text: Roboto
+    text: Helvetica Neue
     code: Roboto Mono
   favicon: assets/favicon.png
   icon:
@@ -64,11 +57,6 @@ plugins:
       separator: "[\\s\\-,:!=\\[\\]()\"/]+|\\.(?!\\d)|&[lg]t;|(?!\\b)(?=[A-Z][a-z])"
   - minify:
       minify_html: true
-  - mike:
-      version_selector: true
-      css_dir: css
-      javascript_dir: js
-      canonical_version: null
                              
 # Extensions
 markdown_extensions:
@@ -87,9 +75,6 @@ markdown_extensions:
       smart_enable: all
   - pymdownx.caret
   - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight
   - pymdownx.inlinehilite
   - pymdownx.keys
@@ -122,88 +107,5 @@ nav:
     - Core principles:
       - Context and dependency injection (CDI):
         - Introduction: core/cdi.md
-        - Injection configurations: core/inject-configuration.md
-        - Binding and providing: core/providers.md
-        - Factory providers: core/factory.md
-      - Binding hierarchies: core/hierarchies.md # incl. providers
-      - Instance enabling: core/enabling.md
-      - Required bindings: core/required.md
-      - Component metadata: core/metaproviders.md
-      - Annotation polymorphism: core/annotations.md
-    - Proxy handling:
-      - Proxy context: core/proxy-context.md
-      - Method proxying: core/method-proxying.md
-      - Abstract and interface proxying: core/proxying.md
-      - Implementation delegation: core/delegation.md
-    - Components:
-      - Introduction: core/components.md # services vs components, include containers
-      - Component locating: core/component-locators.md
-      - Service activators: core/service-activators.md
-      - Component processing: core/component-processing.md
-      - Component modifiers: core/component-modifying.md
-    - Element contexts:
-      - Introduction: core/element-context.md
-      - Type contexts: core/type-context.md #incl. wildcards, type parameters
-      - Executable contexts: core/executable-context.md # methods + parameters, ctors
-      - Field contexts: core/field-context.md
-    - Applications:
-      - Application-level context: core/application-context.md
-      - Bootstrapping applications: core/application-bootstrap.md # incl. HartshornApplication.create
-      - Application factory: core/application-factory.md
-      - Application configurators: core/application-configurator.md
-      - Application management: core/application-management.md # incl. logging and lifecycle
-      - Application environment: core/environment.md # incl. prefix and CI
-      - Logging: core/logging.md # incl. @LogExclude
-    - Utilities:
-      - Key framework: core/keys.md
-      - String type adapters: core/adapters.md
-      - Parameter loaders: core/parameter-loading.md # Rule based, abstract
-  - Modules: 
-    - Introduction: modules/modules.md
-    - Caching:
-      - Cache management: modules/cache/management.md
-      - Service-based caching: modules/cache/services.md
-    - Commands:
-      - Subjects: modules/commands/subjects.md
-      - Command definitions: modules/commands/definitions.md
-      - Gateways and executors: modules/commands/gateway.md
-      - Command extensions: modules/commands/extensions.md
-      - Event hooks: modules/commands/events.md
-      - Argument converters: modules/commands/converters.md
-    - Configuration: modules/config/config.md
-    - Events: 
-      - Event definitions: modules/events/events.md
-      - Service handles: modules/events/services.md
-    - Internationalization (I18n):
-      - Translation bundles: modules/i18n/bundles.md
-      - Internationalized messages: modules/i18n/messages.md
-      - Service handles: modules/i18n/services.md
-    - Persistence:
-      - Object mapping: modules/persistence/mapping.md
-      - File management: modules/persistence/files.md
-      - File type definitions: modules/persistence/filetypes.md
-      - Hartshorn Data:
-        - JPA Repositories: modules/persistence/jpa.md
-        - Pagination: modules/persistence/pagination.md
-        - Advanced querying with JPQL and native QL: modules/persistence/querying.md
-      - Service handles: modules/persistence/services.md
-      - Advanced data structures:
-        - Registries: modules/persistence/registry.md
-        - Tables: modules/persistence/table.md
-    - Task running: 
-      - Pipeline framework: modules/tasks/pipelines.md
-      - Asynchronous tasks: modules/tasks/async.md
-    - Web: 
-      - Servlets: modules/web/servlets.md
-      - HTTP utilities: modules/web/http.md
-      - REST controllers: modules/web/controllers.md
-  - Contribute: 
-    - contributing.md
-    - Coding conventions: codestyle.md
-    - Testing: testing.md
 extra_css:
   - stylesheets/extra.css
-extra:
-  version:
-    provider: mike
-    default: stable
